@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use App\Abstracts\Http\Controllers\InstituteController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
-class AuthController extends Controller
+class AuthController extends InstituteController
 {
     /**
      * Store a new user.
@@ -38,7 +40,8 @@ class AuthController extends Controller
             return response()->json(['user' => $user, 'message' => 'CREATED'], 201);
 
         } catch (\Exception $e) {
-            //return error message
+            //return error message\
+            Log::error($e);
             return response()->json(['message' => 'User Registration Failed!'], 409);
         }
 
