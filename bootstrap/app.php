@@ -108,10 +108,32 @@ $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 |
 */
 
+//$app->router->group([
+//    'namespace' => 'App\Http\Controllers',
+//], function ($router) {
+//    require __DIR__.'/../routes/web.php';
+//});
+
 $app->router->group([
     'namespace' => 'App\Http\Controllers',
 ], function ($router) {
-    require __DIR__.'/../routes/web.php';
+
+    $router->get('/', function (){
+        return 'School';
+    });
+
+    $prefix = 'v1';
+
+    /** @var \Laravel\Lumen\Routing\Router $router */
+
+    $router->group(['prefix'=>$prefix], function ($router) use ($prefix){
+        $dir = glob(__DIR__.'/../routes/'.$prefix.'/*.php');
+
+        foreach ( $dir as $filename) {
+            require $filename;
+        }
+    });
+
 });
 
 return $app;

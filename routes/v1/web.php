@@ -16,9 +16,9 @@
 
 //use App\Http\Controllers\Auth\AuthController;
 
-$router->get('/', function () use ($router) {
-    return $router->app->version();
-});
+//$router->get('/', function () use ($router) {
+//    return $router->app->version();
+//});
 
 // API route group
 $router->group(['prefix' => 'api'], function () use ($router) {
