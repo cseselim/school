@@ -6,6 +6,7 @@ use App\Exceptions\CustomException;
 use App\Http\Controllers\Controller;
 use App\Models\Modules\QuestionBank\Question;
 use App\Repository\Modules\QuestionBank\QuestionBankRepository;
+use App\Request\Modules\QuestionBank\QuestionBankRequest;
 use Illuminate\Http\Request;
 
 class QuestionBankController extends Controller
@@ -20,27 +21,12 @@ class QuestionBankController extends Controller
      * @throws CustomException
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request, QuestionBankRepository $questionBankRepository)
+    public function store(Request $request, QuestionBankRequest $questionBankRequest, QuestionBankRepository $questionBankRepository)
     {
-
+        $this->validate($request, $questionBankRequest::rules());
+        $questionBankRepository::questionCreate($request);
     }
 
-    /**
-     * @throws CustomException
-     * @throws \Illuminate\Validation\ValidationException
-     */
-    public function update(Request $request, QuestionBankRepository $questionBankRepository, $id)
-    {
-
-    }
-
-    /**
-     * @throws CustomException
-     */
-    public function show(QuestionBankRepository $questionBankRepository, $id)
-    {
-
-    }
 
 }
 
