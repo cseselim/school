@@ -21,7 +21,29 @@ class QuestionBankRepository
                 'img_has' => $request->img_has,
             ]
         );
-
+        thiscreateQuestionAttachment($request->question_thumbnail , $question->id);
         return $question;
+    }
+
+
+
+    /**
+     * @param string $url
+     * @param int $questionId
+     * @param int $questionsOptionId
+     * @return mixed
+     */
+    private function createQuestionAttachment($url, int $questionId, int $questionsOptionId = 0)
+    {
+        if ($url == '' || $url == null) {
+            return false;
+        }
+        return QuestionAttachment::create(
+            [
+                'file' => $url,
+                'question_id' => $questionId,
+                'questions_option_id' => $questionsOptionId,
+            ]
+        );
     }
 }

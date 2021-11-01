@@ -27,4 +27,13 @@ class Question extends Model
         'img_has'
     ];
 
+
+    /**
+     * Get the phone associated with the user.
+     */
+    public function questionAttachment()
+    {
+        return $this->hasOne(QuestionAttachment::class);
+    }
+
 }
