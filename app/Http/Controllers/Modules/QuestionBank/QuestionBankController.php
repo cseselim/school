@@ -23,7 +23,12 @@ class QuestionBankController extends Controller
      */
     public function store(Request $request, QuestionBankRequest $questionBankRequest, QuestionBankRepository $questionBankRepository)
     {
-        $this->validate($request, $questionBankRequest::rules());
+        $this->validate($request, $questionBankRequest::questionValidation());
+
+        if ($request->type == 1 || $request->type == 2){
+            $this->validate($request, $questionBankRequest::questionOptionsValidation());
+        }
+
         $questionBankRepository::questionCreate($request);
     }
 

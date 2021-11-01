@@ -11,7 +11,7 @@ class QuestionBankRequest
      *
      * @return array
      */
-    public static function rules()
+    public static function questionValidation()
     {
         return [
             'subject_id' => 'required',
@@ -25,8 +25,15 @@ class QuestionBankRequest
             'is_temp' => 'required',
             'img_has' => 'required',
         ];
+    }
 
-
+    public static function questionOptionsValidation(){
+        return [
+            'options' => 'required|array',
+            'options.*' => 'required',
+            'checked' => 'required|array',
+            'checked.*' => 'required',
+        ];
     }
 
 }
