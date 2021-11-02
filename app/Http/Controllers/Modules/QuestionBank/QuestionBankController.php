@@ -29,7 +29,7 @@ class QuestionBankController extends Controller
             $this->validate($request, $questionBankRequest::questionOptionsValidation());
         }
 
-        $questionBankRepository::questionCreate($request);
+        $questionBankRepository->questionCreate($request);
     }
 
 

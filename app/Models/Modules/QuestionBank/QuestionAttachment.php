@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class QuestionAttachment extends Model
 {
 
-    protected $table = 'questions';
+    protected $table = 'question_attachment';
 
     /**
      * The attributes that are mass assignable.
@@ -17,6 +17,7 @@ class QuestionAttachment extends Model
     protected $fillable = [
         'question_id',
         'file',
+        'questions_option_id',
     ];
 
 
