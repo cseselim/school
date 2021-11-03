@@ -24,9 +24,9 @@ class QuestionBankRepository
 //            ]
 //        );
 
-        return fileUploades::fileUpload($request->question_thumbnail);
+        return fileUploades::fileUpload($request);
 
-//        $this->createQuestionAttachment($request->question_thumbnail, $question->id);
+        $this->createQuestionAttachment($request->question_thumbnail, $question->id);
 //        return $question;
     }
 
