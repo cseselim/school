@@ -36,4 +36,12 @@ class Question extends Model
         return $this->hasOne(QuestionAttachment::class);
     }
 
+    /**
+     * Get the phone associated with the user.
+     */
+    public function questionOption()
+    {
+        return $this->hasMany(QuestionOption::class);
+    }
+
 }
