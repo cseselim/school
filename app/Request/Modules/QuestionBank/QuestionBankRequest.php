@@ -29,10 +29,10 @@ class QuestionBankRequest
 
     public static function questionOptionsValidation(){
         return [
-            'options' => 'required|array',
+            'options' => 'required|array|min:2',
             'options.*' => 'required',
-            'checked' => 'required|array',
-            'checked.*' => 'required',
+            'checked' => 'required|array|min:2',
+            'checked.*' => 'required|in:0,1',
         ];
     }
 

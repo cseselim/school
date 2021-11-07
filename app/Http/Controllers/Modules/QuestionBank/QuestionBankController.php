@@ -29,7 +29,7 @@ class QuestionBankController extends Controller
             $this->validate($request, $questionBankRequest::questionOptionsValidation());
         }
 
-        $id = $questionBankRepository->questionCreate($request);
+        $id = $questionBankRepository->create($request);
 
         return response()->json(['message' => 'Question created successfully', 'id' => $id], 201);
     }

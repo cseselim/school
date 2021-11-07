@@ -6,12 +6,12 @@ use Illuminate\Http\Request;
 
 class fileUploades
 {
-    public static function fileUpload(Request $request){
-        if ($request->hasFile('question_thumbnail')) {
-            $picName = $request->file('question_thumbnail')->getClientOriginalName();
-            $picName = base_path() . uniqid() . $picName;
+    public static function fileUpload(Request $request,$file_name){
+        if ($request->hasFile($file_name)) {
+            $picName = $request->file($file_name)->getClientOriginalName();
+            $picName = url('public/uploads/file/') . uniqid() . $picName;
             $destinationPath = "uploads/files";
-            $request->file('question_thumbnail')->move($destinationPath, $picName);
+            $request->file($file_name)->move($destinationPath, $picName);
             return $picName;
         }
     }

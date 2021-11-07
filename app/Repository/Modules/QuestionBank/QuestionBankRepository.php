@@ -6,11 +6,11 @@ use App\Models\Modules\QuestionBank\QuestionAttachment;
 use App\Models\Modules\QuestionBank\QuestionOption;
 use Illuminate\Http\Request;
 use App\Services\fileUploades;
+use Illuminate\Support\Facades\DB;
 
 class QuestionBankRepository
 {
-    public function questionCreate(Request $request){
-        dd(count($request->thumbnails));
+    private function questionCreate(Request $request){
         $question = Question::create(
             [
                 'subject_id' => $request->subject_id,
@@ -26,7 +26,7 @@ class QuestionBankRepository
             ]
         );
 
-        $this->createQuestionAttachment(fileUploades::fileUpload($request), $question->id);
+        $this->createQuestionAttachment(fileUploades::fileUpload($request, 'question_thumbnail'), $question->id);
         $this->createQuestionOption($request, $question->id);
         return $question;
     }
@@ -38,19 +38,16 @@ class QuestionBankRepository
      */
     private function createQuestionOption(Request $request, int $questionId)
     {
-
-
         for ($i = 0; $i < count($request->options); $i++) {
             $questionsOption = QuestionOption::create(
                 [
                     'question_id' => $questionId,
                     'options' => $request->options[$i],
                     'is_correct' => $request->checked[$i] == 1,
-                    'img_has' => $request->thumbnails[$i] != '' ? '1' : '0',
+                    'img_has' => ($request->thumbnails.'_'.$i) ? '1' : '0',
                 ]
             );
-
-            //$this->createQuestionAttachment($request->thumbnails[$i], $questionId, $questionsOption->id);
+            $this->createQuestionAttachment(fileUploades::fileUpload($request, 'thumbnails_'.$i), $questionId, $questionsOption->id);
         }
     }
 
@@ -75,4 +72,16 @@ class QuestionBankRepository
             ]
         );
     }
+
+    public function create(Request $request){
+        DB::beginTransaction();
+        try {
+            $this->questionCreate($request);
+            DB::commit();
+        } catch (\Throwable $e) {
+            DB::rollback();
+            throw $e;
+        }
+    }
 }
+
