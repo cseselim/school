@@ -22,7 +22,8 @@ class QuizController extends Controller
     public function store(Request $request, QuizRequest $quizRequest, QuizRepository $QuizRepository)
     {
         $this->validate($request, $quizRequest::quizValidation());
-        $id = $QuizRepository->create($request);
+        $QuizRepository->create($request);
+        return response()->json(['message' => 'Quiz created successfully'], 201);
     }
 
 }
