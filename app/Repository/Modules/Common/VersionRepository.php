@@ -25,4 +25,15 @@ class VersionRepository
         return VersionModel::select('id','name','code')->find($id);
     }
 
+    public function update($request, $id){
+        $data = [
+            'name' => $request->name,
+            'code' => $request->code,
+        ];
+        if ($request->is_active){
+            $data['is_active'] = $request->is_active;
+        }
+        return VersionModel::where('id', $id)->update($data);
+    }
+
 }
