@@ -36,4 +36,8 @@ class VersionRepository
         return VersionModel::where('id', $id)->update($data);
     }
 
+    public function versionDelete($id){
+        return VersionModel::where('id',$id)->delete();
+    }
+
 }

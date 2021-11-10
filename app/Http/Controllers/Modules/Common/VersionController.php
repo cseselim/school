@@ -74,9 +74,10 @@ class VersionController extends InstituteController
      * @param  int  $id
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(VersionRepository $versionRepository, int $id)
     {
-        //
+        $versionRepository->versionDelete($id);
+        return response()->json(['message' => 'Version delete successfully'], 201);
     }
 
 }

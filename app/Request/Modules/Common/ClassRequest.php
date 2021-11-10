@@ -11,19 +11,13 @@ class ClassRequest
      *
      * @return array
      */
-    public static function questionValidation()
+    public static function classValidation()
     {
         return [
-            'subject_id' => 'required',
-            'question_level_id' => 'required',
-            'title' => 'required',
-            'mark' => 'required',
-            'type' => 'required',
-            'user_id' => 'required',
-            'question_explanation' => 'required',
-            'correct_answer' => 'required',
-            'is_temp' => 'required',
-            'img_has' => 'required',
+            'name' => 'required',
+            'priority' => 'required',
+            'display_name' => 'required',
+            'code' => 'required',
         ];
     }
 }

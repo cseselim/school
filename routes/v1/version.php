@@ -9,29 +9,36 @@ $router->group(
         $router->get(
             '/version',
             [
-                'as' => 'questionBank.store',
+                'as' => 'version.index',
                 'uses' => '\\' . \App\Http\Controllers\Modules\Common\VersionController::class . '@index'
             ]
         );
         $router->post(
             '/version',
             [
-                'as' => 'questionBank.store',
+                'as' => 'version.store',
                 'uses' => '\\' . \App\Http\Controllers\Modules\Common\VersionController::class . '@store'
             ]
         );
         $router->get(
             '/version/{id}',
             [
-                'as' => 'questionBank.store',
+                'as' => 'version.show',
                 'uses' => '\\' . \App\Http\Controllers\Modules\Common\VersionController::class . '@show'
             ]
         );
         $router->put(
             '/version/{id}',
             [
-                'as' => 'questionBank.store',
+                'as' => 'version.update',
                 'uses' => '\\' . \App\Http\Controllers\Modules\Common\VersionController::class . '@update'
+            ]
+        );
+        $router->delete(
+            '/version/{id}',
+            [
+                'as' => 'version.destroy',
+                'uses' => '\\' . \App\Http\Controllers\Modules\Common\VersionController::class . '@destroy'
             ]
         );
     }
