@@ -37,7 +37,7 @@ class ClassRepository
         return Classes::where('id', $id)->update($data);
     }
 
-    public function versionDelete($id){
+    public function classDelete($id){
         return Classes::where('id',$id)->delete();
     }
 }

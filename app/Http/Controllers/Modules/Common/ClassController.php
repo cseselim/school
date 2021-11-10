@@ -77,7 +77,7 @@ class ClassController extends controller
      */
     public function destroy(classRepository $classRepository, int $id)
     {
-        $classRepository->versionDelete($id);
+        $classRepository->classDelete($id);
         return response()->json(['message' => 'Class delete successfully'], 201);
     }
 }
