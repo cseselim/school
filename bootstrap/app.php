@@ -95,6 +95,7 @@ $app->configure('app');
  $app->register(App\Providers\AuthServiceProvider::class);
 // jwtAuth user for login
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+$app->register(\App\Providers\CorsProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
 /*
