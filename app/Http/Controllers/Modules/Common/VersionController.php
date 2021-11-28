@@ -64,8 +64,8 @@ class VersionController extends InstituteController
     public function update(Request $request,VersionRequest $versionRequest, VersionRepository $versionRepository,$id)
     {
         $this->validate($request, $versionRequest::VersionValidation());
-        $id = $versionRepository->update($request,$id);
-        return response()->json(['message' => 'Version update successfully','id'=>$id], 201);
+        $data = $versionRepository->update($request,$id);
+        return response()->json(['message' => 'Version update successfully','data'=>$data], 201);
     }
 
     /**

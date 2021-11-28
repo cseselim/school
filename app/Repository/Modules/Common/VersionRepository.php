@@ -33,7 +33,8 @@ class VersionRepository
         if ($request->is_active){
             $data['is_active'] = $request->is_active;
         }
-        return VersionModel::where('id', $id)->update($data);
+        VersionModel::where('id', $id)->update($data);
+        return VersionModel::select('*')->find($id);
     }
 
     public function versionDelete($id){
