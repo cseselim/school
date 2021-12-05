@@ -66,7 +66,7 @@ class ClassController extends controller
     {
         $this->validate($request, $classRequest::ClassValidation());
         $id = $classRepository->update($request,$id);
-        return response()->json(['message' => 'Class update successfully','id'=>$id], 201);
+        return response()->json(['message' => 'Class update successfully','data'=>$id], 201);
     }
 
     /**

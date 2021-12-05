@@ -34,7 +34,8 @@ class ClassRepository
             'display_name' => $request->display_name,
             'code' => $request->code,
         ];
-        return Classes::where('id', $id)->update($data);
+        Classes::where('id', $id)->update($data);
+        return Classes::select('*')->find($id);
     }
 
     public function classDelete($id){
