@@ -20,11 +20,11 @@ class ClassRepository
     }
 
     public function getAll(){
-        return Classes::select('id','name','code')->get();
+        return Classes::select('*')->get();
     }
 
     public function find( int $id){
-        return Classes::select('id','name','code')->find($id);
+        return Classes::select('*')->find($id);
     }
 
     public function update($request, $id){
