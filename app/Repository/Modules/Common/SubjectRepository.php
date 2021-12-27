@@ -12,7 +12,7 @@ class SubjectRepository
 {
     public function create(Request $request){
 
-        $image_url = fileUploades::fileUpload($request, 'image_url');
+        //$image_url = fileUploades::fileUpload($request, 'image_url');
 
         $version = Subject::create(
             [
@@ -20,7 +20,7 @@ class SubjectRepository
                 'version_id' => $request->version_id,
                 'name' => $request->name,
                 'code' => $request->code,
-                'image_url' => $image_url,
+                'image_url' => $request->image_url,
                 'priority' => $request->priority,
             ]
         );
